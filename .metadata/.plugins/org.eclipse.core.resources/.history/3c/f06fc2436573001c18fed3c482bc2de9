@@ -1,0 +1,207 @@
+package students;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Scanner;
+ 
+public class Main {
+	static Scanner sc = new Scanner(System.in);
+    static void readInfo(UserInput tt) {
+        boolean theFlag = true;
+        System.out.println("Nhap ma so: ");
+        while(theFlag) {
+        	try {
+           	 
+                // Parsing user input to integer
+                // using the parseInt() method
+                int number = Integer.parseInt(sc.next());
+
+                // Number can be valid or invalid
+
+                // If number is valid, print and display
+                // the message and number
+                System.out.println("You entered: "
+                                   + number);
+                tt.setstudentID(number);
+                // Get off from this loop
+                theFlag = false;
+            }
+
+            // Catch block to handle NumberFormatException
+            catch (NumberFormatException e) {
+            	System.out.println("NumberFormatException occured");
+            }
+        }
+        theFlag = true;
+        sc.nextLine();
+        System.out.println("Nhap ho ten: ");
+       
+        
+        while(theFlag) {
+        	try {
+        	    String input = sc.nextLine();
+        	    if (input.length() == 0 ) {
+        	        input = null;
+        	    }
+        		System.out.println(input.length());			//hien tai t chi nghi dc cach hien error nho vo cai nay co gi m kiem cach khac taino se hien cai so chu tren man hinh
+        		tt.setHoten(input);
+                // Get off from this loop
+                theFlag = false;
+            }
+
+            // Catch block to handle NumberFormatException
+            catch (NullPointerException e) {
+            	System.out.println("NullPointerException occured");
+            }
+        }
+        theFlag = true;
+
+        
+        
+        System.out.println("Nhap dia chi: ");
+        while(theFlag) {
+        	try {
+        	    String input = sc.nextLine();
+        	    if (input.length() == 0 ) {
+        	        input = null;
+        	    }
+        		System.out.println(input.length());			//hien tai t chi nghi dc cach hien error nho vo cai nay co gi m kiem cach khac taino se hien cai so chu tren man hinh
+        		tt.setDiaChi(input);
+                // Get off from this loop
+                theFlag = false;
+            }
+
+            // Catch block to handle NumberFormatException
+            catch (NullPointerException e) {
+            	System.out.println("NullPointerException occured");
+            }
+        }
+        theFlag = true;
+        
+        do {
+            System.out.println("Nhap so dien thoai: ");
+            tt.setsdt(sc.nextLine());
+        } while (tt.getsdt().length() != 7);
+    }
+	public static void main(String[] args) {
+		ArrayList<UserInput> sv = null;
+        int a, n = 0;
+        boolean flag = true;
+        do {
+            System.out.println("Chon chuc nang:");
+            System.out.println("1.Nhap thong tin sinh vien. \n" +
+                    "2.Sap xep danh sach sinh vien. \n" + 
+            		"3.Xoa thong tin sinh vien. \n" + 
+            		"4.Chinh sua thong tin sinh vien\n" +
+            		"5.Them sinh vien \n" +
+                    "nhap  so khac de thoat\n");
+            a = sc.nextInt();
+            switch (a) 
+            {
+                case 1:{
+                    sv = new ArrayList<UserInput>();
+                    System.out.println("Nhap so luong sinh vien can khai bao: ");
+                    n = sc.nextInt();
+                    for (int i = 0; i < n; i++) {
+                        System.out.println("Sinh vien thu " + (i + 1)+": ");
+                        UserInput sinhvien = new UserInput();
+                        readInfo(sinhvien);
+                        sv.add(sinhvien);
+                    }
+                }
+                    break;
+                case 2:
+                	Collections.sort(sv, new Comparator<UserInput>(){
+                	@Override
+                	public int compare (UserInput sv1, UserInput sv2) {
+                	    if (sv1.getstudentID() > sv2.getstudentID()) {
+                	        return 1;
+                	     } else {
+                	       if (sv1.getstudentID() == sv2.getstudentID()) {
+                	            return 0;
+                	         } else {
+                	            return -1;
+                	        }
+                	    }
+                	}
+                	}
+                	);
+                    System.out.printf("%-5s %15s %15s %20s \n", "MSSV", "ho va ten", "dia chi", "sdt");
+                    for (int i = 0; i < n; i++) {
+                        sv.get(i).hienThiTT();
+                    }
+                    break;
+                case 3:
+                	System.out.println("Nhap ma sinh vien can xoa");
+                	int b = sc.nextInt();
+                	for (int i = 0; i < n; i++) {
+                		int c = sv.get(i).getstudentID();
+                		if (c == b)
+                		{
+                			sv.remove(i);
+                		}
+                	}
+                	break;
+                case 4:
+                	System.out.println("Nhap ma sinh vien can chinh sua");
+                	int e = sc.nextInt();
+                	for (int i = 0; i < n; i++) {
+                		int c = sv.get(i).getstudentID();
+                		if (c == e)
+                		{
+                			System.out.println("Chon thong tin can chinh sua?");
+                            System.out.println("1.Ma so sinh vien.\n" +
+                                    "2.Ten sinh vien. \n" + 
+                            		"3.Dia chi. \n" + 
+                            		"4.Sdt. \n" +
+                                    "Nhap so khac de thoat");
+                            int d = sc.nextInt();
+                            switch (d) {
+                            case 1:
+                            	System.out.println("Nhap mssv moi: ");
+                            	int g = sc.nextInt(); //nextLine();
+                            	while (g<999)
+                            	{
+                            		System.out.println("Mssv khong hop le, vui long nhap lai");
+                            		g = sc.nextInt();
+                            	}
+                            	sv.get(i).setstudentID(g);
+                            	break;
+                            	//case2-3-4
+                            case 2:
+                            	System.out.println("Nhap lai ten sv: ");
+                            	String h = sc.nextLine();
+                            	while (h != null)
+                            	{
+                            		System.out.println("Ten sv khong hop le, vui long nhap lai");
+                            	}
+                            	break;
+                            case 3:
+                            	System.out.println("Nhap lai dia chi: ");
+                            	String j = sc.nextLine();
+                            	break;
+                            case 4:
+                            	System.out.println("Nhap lai sdt: ");
+                            	int k = sc.nextInt();
+                            	break;
+                            }
+                		}
+                	}
+                	break;
+                case 5:
+                	 UserInput sinhvien = new UserInput();
+                     readInfo(sinhvien);
+                     sv.add(sinhvien);
+                	break;
+                default:
+                    System.out.println("Goodbye");
+                    flag = false;
+                    break;
+            }
+        } while (flag);
+
+	}
+
+}

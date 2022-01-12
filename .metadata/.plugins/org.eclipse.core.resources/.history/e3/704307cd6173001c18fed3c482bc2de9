@@ -1,0 +1,68 @@
+package students;
+
+import java.util.Scanner;
+
+public class SinhVienNhap {
+    private int maSV;
+    private String hoTen;
+    private String diaChi;
+    private String sdt;
+ 
+    
+    public SinhVienNhap() {
+ 
+    }
+    
+    public SinhVienNhap(int maSV, String hoten, String diaChi, String sdt) {
+        this.maSV = maSV;
+        this.hoTen = hoten;
+        this.diaChi = diaChi;
+        this.sdt = sdt;
+    }
+    
+    public int getMaSV() {
+        return maSV;
+    }
+ 
+    public void setMaSV(int maSV) {
+        this.maSV = maSV;
+    }
+ 
+    public String getHoten() {
+        return hoTen;
+    }
+ 
+    public void setHoten(String hoten) {
+        this.hoTen = hoten;
+    }
+ 
+    public String getDiaChi() {
+        return diaChi;
+    }
+ 
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
+    }
+ 
+    public String getsdt() {
+        return sdt;
+    }
+ 
+    public void setsdt(String sdt) {
+        this.sdt = sdt;
+    }
+    
+    @Override
+    public String toString() {
+        return "SinhVienNhap{" +
+                "maSV=" + maSV +
+                ", hoten='" + hoTen + ' ' +
+                ", diaChi='" + diaChi + ' ' +
+                ", sdt='" + sdt + ' ' +
+                '}';
+    }
+   
+    public void hienThiTT() {
+        System.out.printf("%-5d %-20s %-15s %-15s \n", maSV, hoTen, diaChi, sdt);
+    }
+}

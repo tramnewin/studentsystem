@@ -1,0 +1,68 @@
+package students;
+
+import java.util.Scanner;
+
+public class UserInput {
+    private int studentID;
+    private String hoTen;
+    private String diaChi;
+    private String sdt;
+ 
+    
+    public UserInput() {
+ 
+    }
+    
+    public UserInput(int studentID, String hoten, String diaChi, String sdt) {
+        this.studentID = studentID;
+        this.hoTen = hoten;
+        this.diaChi = diaChi;
+        this.sdt = sdt;
+    }
+    
+    public int getstudentID() {
+        return studentID;
+    }
+ 
+    public void setstudentID(int studentID) {
+        this.studentID = studentID;
+    }
+ 
+    public String getHoten() {
+        return hoTen;
+    }
+ 
+    public void setHoten(String hoten) {
+        this.hoTen = hoten;
+    }
+ 
+    public String getDiaChi() {
+        return diaChi;
+    }
+ 
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
+    }
+ 
+    public String getsdt() {
+        return sdt;
+    }
+ 
+    public void setsdt(String sdt) {
+        this.sdt = sdt;
+    }
+    
+    @Override
+    public String toString() {
+        return "UserInput{" +
+                "studentID=" + studentID +
+                ", hoten='" + hoTen + ' ' +
+                ", diaChi='" + diaChi + ' ' +
+                ", sdt='" + sdt + ' ' +
+                '}';
+    }
+   
+    public void hienThiTT() {
+        System.out.printf("%-5d %-20s %-15s %-15s \n", studentID, hoTen, diaChi, sdt);
+    }
+}
